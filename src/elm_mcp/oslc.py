@@ -868,6 +868,23 @@ async def inspect_workitem(id: str) -> dict:
     }
 
 
+def _folder_titles(data: dict) -> dict:
+    """Extract {folder_uri: title} from an /rm/folders OSLC JSON response.
+
+    Ignores the ResponseInfo / Description pseudo-entries (their keys are the
+    query URL and /rm/folders itself, not real folder resources).
+    """
+    out: dict = {}
+    if not isinstance(data, dict):
+        return out
+    for folder_uri, props in data.items():
+        if "/folders/" not in folder_uri or not isinstance(props, dict):
+            continue
+        title_entries = props.get("http://purl.org/dc/terms/title", [])
+        out[folder_uri] = title_entries[0].get("value") if title_entries else None
+    return out
+
+
 async def list_folders(project: str) -> list[dict]:
     """List RM (DOORS Next) folders for a project.
 
@@ -876,7 +893,14 @@ async def list_folders(project: str) -> list[dict]:
     <component> as JSON and parses {folder_uri: {dcterms:title:[{value}]}}.
     System folders (root, Folder Query Results) are filtered (tenant-neutral).
     Degrades to [] when the service provider exposes no component.
-    Returns [{"title","uri"}].
+
+    ELM servers with configuration management enabled reject a *component* URI
+    as the folder parent (HTTP 400 "Submitted parameters must contain a
+    Configuration URI"), or answer with only the synthetic root folder. In that
+    case fall back to the folder QueryCapability declared by the service
+    provider: query by the project-area parent to locate the root folder, then
+    walk public_rm:parent breadth-first to return the whole folder tree.
+    Returns [{"title","uri"}] (fallback entries also carry depth/parent).
     """
     project_url = await _resolve_project_url("rm", project)
     sp_xml = await _get_xml_text(project_url)
@@ -887,19 +911,67 @@ async def list_folders(project: str) -> list[dict]:
 
     client = await get_client()
     folders_url = f"{settings.elm_url}/rm/folders"
-    resp = await client.get(
-        folders_url,
-        params={"oslc.where": f"public_rm:parent={component_uri}"},
-        headers={"Accept": "application/json", "OSLC-Core-Version": "2.0"},
-    )
-    resp.raise_for_status()
-    data = resp.json()
+    headers = {"Accept": "application/json", "OSLC-Core-Version": "2.0"}
 
-    folders: list[dict] = []
-    for folder_uri, props in data.items():
-        title_entries = props.get("http://purl.org/dc/terms/title", [])
-        title = title_entries[0].get("value") if title_entries else None
-        if title in _SYSTEM_FOLDER_TITLES:
+    async def _query(parent: str) -> dict:
+        try:
+            resp = await client.get(
+                folders_url,
+                params={"oslc.where": f"public_rm:parent={parent}"},
+                headers=headers,
+            )
+            if resp.status_code != 200 or not resp.text:
+                return {}
+            return resp.json()
+        except (httpx.HTTPError, ValueError):
+            return {}
+
+    # Primary path: component as parent (original behaviour, mock-friendly).
+    try:
+        resp = await client.get(
+            folders_url,
+            params={"oslc.where": f"public_rm:parent={component_uri}"},
+            headers=headers,
+        )
+        resp.raise_for_status()
+        found = {
+            uri: title
+            for uri, title in _folder_titles(resp.json()).items()
+            if title not in _SYSTEM_FOLDER_TITLES
+        }
+        if found:
+            return [{"title": title, "uri": uri} for uri, title in found.items()]
+    except (httpx.HTTPStatusError, ValueError):
+        pass
+
+    # Fallback: project area -> root folder -> BFS over public_rm:parent.
+    pa_m = _re.search(r"/rm/oslc_rm/([^/]+)/services\.xml", project_url)
+    if pa_m is None:
+        return []
+    project_area = f"{settings.elm_url}/rm/process/project-areas/{pa_m.group(1)}"
+
+    seen: set[str] = set()
+    emitted: set[str] = set()
+    queued: set[str] = set()
+    results: list[dict] = []
+    queue: list[tuple[str, int, str | None]] = []
+
+    for root_uri in _folder_titles(await _query(project_area)):
+        queued.add(root_uri)
+        queue.append((root_uri, 0, None))
+
+    while queue and len(seen) < 500:
+        uri, depth, _parent = queue.pop(0)
+        if uri in seen or depth > 8:
             continue
-        folders.append({"title": title, "uri": folder_uri})
-    return folders
+        seen.add(uri)
+        for child_uri, child_title in _folder_titles(await _query(uri)).items():
+            if child_uri not in emitted and child_title and child_title not in _SYSTEM_FOLDER_TITLES:
+                emitted.add(child_uri)
+                results.append(
+                    {"title": child_title, "uri": child_uri, "depth": depth + 1, "parent": uri}
+                )
+            if child_uri not in queued:
+                queued.add(child_uri)
+                queue.append((child_uri, depth + 1, uri))
+    return results

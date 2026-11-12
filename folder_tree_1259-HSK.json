@@ -1,0 +1,611 @@
+{
+  "project": "1259-HSK",
+  "project_area": "https://elmtrail.hollysys.net:9443/rm/process/project-areas/_bTwXkDTjEe-xAc0RgQyu0Q",
+  "component": "https://elmtrail.hollysys.net:9443/rm/cm/component/_bXoyADTjEe-xAc0RgQyu0Q",
+  "stream": "https://elmtrail.hollysys.net:9443/rm/cm/stream/_bXoyCDTjEe-xAc0RgQyu0Q",
+  "source": "mcp__elm__list_folders via elm MCP connector (stdio)",
+  "total": 100,
+  "max_depth": 4,
+  "folders": [
+    {
+      "title": "HSK Test Specification",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_0vDrwJYVEfG2HPZhScGFIg",
+      "depth": 1,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_bYrT0zTjEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "HSK SCOPE",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_osIt8DTjEe-xAc0RgQyu0Q",
+      "depth": 1,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_bYrT0zTjEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "HSK Design Specification",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_8W90UJFfEfG2HPZhScGFIg",
+      "depth": 1,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_bYrT0zTjEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "HSK SRS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w",
+      "depth": 1,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_bYrT0zTjEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "DITP",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_0vDrwJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "Particular Specification (PS)",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BMCyZjTkEe-xAc0RgQyu0Q",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_osIt8DTjEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "TUE SCOPE",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_XH-R0BqcEfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_osIt8DTjEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "Interface Requirement Specification (IRS)",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_osIt8DTjEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "DIS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_Hpl_IJFgEfG2HPZhScGFIg",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_8W90UJFfEfG2HPZhScGFIg"
+    },
+    {
+      "title": "SDS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_-CcesJFfEfG2HPZhScGFIg",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_8W90UJFfEfG2HPZhScGFIg"
+    },
+    {
+      "title": "HWDS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_DRevYJFgEfG2HPZhScGFIg",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_8W90UJFfEfG2HPZhScGFIg"
+    },
+    {
+      "title": "SWMDS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_NUc5EJF0EfG2HPZhScGFIg",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_8W90UJFfEfG2HPZhScGFIg"
+    },
+    {
+      "title": "ISDS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_Kr7HsJFgEfG2HPZhScGFIg",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_8W90UJFfEfG2HPZhScGFIg"
+    },
+    {
+      "title": "SWDS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_EZ9aYJFgEfG2HPZhScGFIg",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_8W90UJFfEfG2HPZhScGFIg"
+    },
+    {
+      "title": "SSDS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_GY0TwJFgEfG2HPZhScGFIg",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_8W90UJFfEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259HSK SWR(PLC) 个工件",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_gPCCADR8EfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259HSK SRS 个工件",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_tvdqYCTUEfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259HSK HWR(IBP) 个工件",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_i5uIQCpYEfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259HSK HWR(Cubicle) 个工件",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_D0YW0CoqEfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259HSK HWR(Cables and Accessories) 个工件",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_6uAlMCpKEfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259HSK HWR(Mobile) 个工件",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_fSDiACosEfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259HSK HWR(Workbench, Console and furniture) 个工件",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2HlWMCpWEfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259HSK SWR(Server, SMS, TSS, Mobile) 个工件",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_Njd0YDR0EfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259HSK HWR(SMS,SDS,TSS) 个工件",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_wtby8CpcEfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259HSK SWR(FEP) 个工件",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_Nti_oDSDEfCGo9Yn2lXq5w",
+      "depth": 2,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_rO05oCTUEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259-1261",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_LNscAJYWEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-COM (HKTS)",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_YQjG8JYZEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1269",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_OZVKMJYZEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1552",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_RKb_4JYZEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1254",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_-l51EJYVEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1258",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_EPJ8kJYWEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1262",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_Mkz_8JYWEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1257",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_DLFQcJYWEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1555 POW",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_SlEx4JYZEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-TML MCS (HKTS)",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_aZZp0JYZEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1520",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_P8atkJYZEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1263",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2nTfcJYYEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-CASS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_W9oGgJYZEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1801",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_VfWKoJYZEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1260",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_J5heYJYWEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-1555 TRA",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_UBz1oJYZEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259-OEDS (HKTS)",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_ZVOQAJYZEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2UTyUJYVEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259 MCS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BMfeWDTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BMCyZjTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 TUE PS SCOPE artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_mXgwMCHFEfCGo9Yn2lXq5w",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_XH-R0BqcEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "App R artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_TvnOcEvqEfCGo9Yn2lXq5w",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_XH-R0BqcEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "M&W Specification.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_IhROaKl5ye0lUl1oZTvAEA",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_XH-R0BqcEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "Appendix A Cable Specification artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_YzvReHgv5VriGNDJNFAcKA",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_XH-R0BqcEfCGo9Yn2lXq5w"
+    },
+    {
+      "title": "1259-1257",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BFVtcDTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1262",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A_OeYDTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1801",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BGFUUDTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-CASS",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BJzWtjTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1552",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BDsutjTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-COM(HKTS)",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BG07MDTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1260",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BHkiEDTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1520",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BIUI9jTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1269",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BKjkoDTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-TML MCS(HKTS)",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BJDv0DTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-OEDS(HKTS)",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BLTLgDTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1555(POW)",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-e3gDTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1254",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BEcVnzTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1258",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BC9H3DTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1555(TRA)",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BBdTBjTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1263",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BAtsJjTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259-1261",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A_-FQDTkEe-xAc0RgQyu0Q",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-CLkDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "Software Module Design Specification of (SMS,Mobile,Digital IBP) for HSK.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_m2A0MJVYEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_NUc5EJF0EfG2HPZhScGFIg"
+    },
+    {
+      "title": "Software Module Design Specification of PLC for HSK.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A2i9oJX4EfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_NUc5EJF0EfG2HPZhScGFIg"
+    },
+    {
+      "title": "Software Module Design Specification of Server,FEP for HSK.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_xxXkwJUnEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_NUc5EJF0EfG2HPZhScGFIg"
+    },
+    {
+      "title": "Software Module Design Specification of Training Simulator System for HSK.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_SEY6MJVqEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_NUc5EJF0EfG2HPZhScGFIg"
+    },
+    {
+      "title": "Software Design Specification of Mobile MCS for HSK.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_Py408JF1EfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_EZ9aYJFgEfG2HPZhScGFIg"
+    },
+    {
+      "title": "Software Design Specification of FEP for HSK.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_KjeGUJIQEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_EZ9aYJFgEfG2HPZhScGFIg"
+    },
+    {
+      "title": "Software Design Specification of Server,SMS,Digital IBP for HSK.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_Y7mlgJI8EfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_EZ9aYJFgEfG2HPZhScGFIg"
+    },
+    {
+      "title": "Software Design Specification of Training Simulator System for HSK.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_Z2uKkJRYEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_EZ9aYJFgEfG2HPZhScGFIg"
+    },
+    {
+      "title": "Software Design Specification of PLC for HSK.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_1I_dYJRiEfG2HPZhScGFIg",
+      "depth": 3,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_EZ9aYJFgEfG2HPZhScGFIg"
+    },
+    {
+      "title": "Detailed Interface Test Plan for HSK (1259 - 1552).docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_Yrfb4JYsEfG2HPZhScGFIg",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_RKb_4JYZEfG2HPZhScGFIg"
+    },
+    {
+      "title": "Detailed Interface Test Plan for HSK (1259 - 1555POW).docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_d0mbsNvxEfGcztlurvyFuw",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_SlEx4JYZEfG2HPZhScGFIg"
+    },
+    {
+      "title": "Detailed Interface Test Plan for HSK (1259 - 1520).docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_MsrW8JYgEfG2HPZhScGFIg",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_P8atkJYZEfG2HPZhScGFIg"
+    },
+    {
+      "title": "Detailed Interface Test Plan for HSK (1259 - 1263).docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_0SrU8JYZEfG2HPZhScGFIg",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_2nTfcJYYEfG2HPZhScGFIg"
+    },
+    {
+      "title": "Detailed Interface Test Plan for HSK (1259 - 1801).docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_RwsM8JYsEfG2HPZhScGFIg",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_VfWKoJYZEfG2HPZhScGFIg"
+    },
+    {
+      "title": "1259 scope artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BOIdEDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BMfeWDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "App AK.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BObYCjTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BMfeWDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "App M.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BPd52jTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BMfeWDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "App R.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BNFUPDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BMfeWDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "App B.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BNiAKjTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BMfeWDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1257.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BFooaDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BFVtcDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1262.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A_hZXDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A_OeYDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1801.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BGYPTDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BGFUUDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - CASS.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BKG4vDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BJzWtjTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1552.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BEJaoDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BDsutjTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - COM(HKTS).docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BHH2KTTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BG07MDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1260.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BH3dDDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BHkiEDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1520.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BInD7DTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BIUI9jTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1269.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BK2fmTTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BKjkoDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - TML MCS(HKTS).docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BJXR3DTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BJDv0DTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - OEDS(HKTS).docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BLmGfDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BLTLgDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1555(POW).docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-xyeTTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A-e3gDTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259_1254.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BE5BhzTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BEcVnzTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1258.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BDQC1zTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BC9H3DTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1555(TRA).docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BBw1DDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BBdTBjTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1263.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BBBOLDTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BAtsJjTkEe-xAc0RgQyu0Q"
+    },
+    {
+      "title": "1259 - 1261.docx artifacts",
+      "uri": "https://elmtrail.hollysys.net:9443/rm/folders/FR_BARAOTTkEe-xAc0RgQyu0Q",
+      "depth": 4,
+      "parent": "https://elmtrail.hollysys.net:9443/rm/folders/FR_A_-FQDTkEe-xAc0RgQyu0Q"
+    }
+  ]
+}
