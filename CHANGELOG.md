@@ -5,6 +5,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning: [S
 
 ## [Unreleased]
 
+### Fixed
+
+- `query_resources` now declares prefixed names in `oslc.where` via `oslc.prefix`. IBM ELM RM `/views` returns 400 "Undefined namespace prefix" when a prefix such as `dcterms:` is used without a declaration.
+- `query_resources` correctly parses RM JSON-LD query results: only `rdfs:member` artifacts are returned, and query metadata nodes (`ResponseInfo`, `RequirementCollection`) are no longer mistaken for artifacts.
+
 ### Added
 
 - `create_requirement` tool — create a requirement in DOORS Next (RM) via OSLC; HTML content is

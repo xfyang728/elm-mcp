@@ -5,6 +5,7 @@ import logging
 from collections.abc import Awaitable, Callable
 from typing import TypeVar
 
+import httpx
 from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ToolError
 
@@ -37,6 +38,16 @@ def tool(func: Callable[..., Awaitable[_T]]) -> Callable[..., Awaitable[_T]]:
             return await func(*args, **kwargs)
         except ToolError:
             raise
+        except httpx.HTTPStatusError as exc:
+            # A raw HTTPStatusError escaping the tool crashes the MCP stdio
+            # server (client then sees "Connection closed"/"Not connected").
+            # Translate it here so the server stays alive and the client sees
+            # a legible message (e.g. 415/404) instead of losing the connection.
+            raise ToolError(
+                f"ELM request failed: HTTP {exc.response.status_code} for {exc.request.url}"
+            ) from exc
+        except httpx.HTTPError as exc:
+            raise ToolError(f"ELM connection error: {exc}") from exc
         except (ValueError, RuntimeError) as exc:
             raise ToolError(str(exc)) from exc
 
@@ -514,6 +525,17 @@ async def inspect_workitem(id: str) -> dict:
 async def list_folders(project: str) -> list[dict]:
     """List RM (DOORS Next) folders for a project. Returns [{"title", "uri"}]."""
     return await oslc.list_folders(project)
+
+
+@tool
+async def list_folder_tree(project: str) -> list[dict]:
+    """Return a project's RM (DOORS Next) folder hierarchy as a nested tree.
+
+    One call returns the whole directory structure as
+    [{"title", "uri", "children": [...]}, ...]. Use this when you want the
+    tree directly instead of reassembling the flat list_folders output.
+    """
+    return await oslc.list_folder_tree(project)
 
 
 def main():

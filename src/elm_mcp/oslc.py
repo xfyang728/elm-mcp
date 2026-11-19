@@ -23,7 +23,28 @@ NS = {
     "oslc_cm_v1": "http://open-services.net/xmlns/cm/1.0/",
     "oslc_qm_v1": "http://open-services.net/xmlns/qm/1.0/",
     "dcterms": "http://purl.org/dc/terms/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "jfs": "http://jazz.net/xmlns/prod/jazz/jfs/1.0/",
+}
+
+# Prefixes declared via oslc.prefix when an OSLC query uses prefixed names.
+# ELM (notably the RM /views query endpoint) rejects prefixed names with
+# "Undefined namespace prefix" unless they are declared explicitly.
+_OSLC_QUERY_PREFIXES = {
+    "dcterms": "http://purl.org/dc/terms/",
+    "oslc": "http://open-services.net/ns/core#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "oslc_rm": "http://open-services.net/ns/rm#",
+    "oslc_cm": "http://open-services.net/ns/cm#",
+    "oslc_qm": "http://open-services.net/ns/qm#",
+    "jazz_rm": "http://jazz.net/ns/rm#",
+}
+
+# JSON-LD node types that are query metadata, not actual artifacts.
+_NON_ARTIFACT_TYPES = {
+    "http://open-services.net/ns/core#ResponseInfo",
+    "http://open-services.net/ns/rm#RequirementCollection",
 }
 
 DOMAIN_PATHS = {
@@ -173,6 +194,11 @@ async def query_resources(domain: str, project: str, where: str | None = None, s
         params["oslc.where"] = where
     if select:
         params["oslc.select"] = select
+    if where:
+        # ELM requires prefixed names in oslc.where to be declared via oslc.prefix.
+        params["oslc.prefix"] = ",".join(
+            f"{p}=<{u}>" for p, u in _OSLC_QUERY_PREFIXES.items()
+        )
     params["oslc.pageSize"] = "50"
 
     # If query_base already has query params (e.g., RM /views?oslc.query=true&projectURL=...),
@@ -218,15 +244,157 @@ async def query_resources(domain: str, project: str, where: str | None = None, s
         return results if results else [{"raw_xml": resp.text[:2000]}]
 
     resp.raise_for_status()
-    data = resp.json()
-    # OSLC JSON responses have members in rdfs:member or oslc:results
-    return data.get("oslc:results", data.get("rdfs:member", data.get("results", [data])))
+    return _parse_query_results(resp.json())
+
+
+def _parse_query_results(data: dict) -> list[dict]:
+    """Parse OSLC query results from JSON or JSON-LD response bodies.
+
+    ELM RM (/views) returns a JSON-LD object keyed by resource URI, with the
+    members listed under ``rdfs:member``. The metadata node (ResponseInfo) and
+    the container itself must be skipped, otherwise the caller receives garbage
+    entries instead of the actual requirements. CCM/QM may also return the
+    simpler ``oslc:results`` / ``rdfs:member`` / ``results`` shapes.
+    """
+    if not isinstance(data, dict):
+        return []
+
+    # Simple shapes (CCM/QM, and mocks): oslc:results / rdfs:member / results
+    for key in ("oslc:results", "rdfs:member", "results"):
+        value = data.get(key)
+        if isinstance(value, list):
+            return [item for item in value if isinstance(item, dict)]
+
+    # JSON-LD shape (RM /views): membership is advertised on the query-base
+    # node; actual artifacts are the other keys of the top-level object.
+    member_uris: set[str] = set()
+    for node in data.values():
+        if not isinstance(node, dict):
+            continue
+        for member in node.get(f"{NS['rdfs']}member", []):
+            if isinstance(member, dict):
+                uri = member.get("value") or member.get(f"{NS['rdf']}resource")
+                if uri:
+                    member_uris.add(uri)
+
+    def _to_plain(value):
+        """Unwrap JSON-LD literal objects to their scalar values."""
+        if isinstance(value, list):
+            return [_to_plain(v) for v in value]
+        if isinstance(value, dict):
+            if "value" in value:
+                return value["value"]
+            return {k: _to_plain(v) for k, v in value.items()}
+        return value
+
+    results: list[dict] = []
+    for uri, node in data.items():
+        if not isinstance(node, dict):
+            continue
+        types = node.get(f"{NS['rdf']}type", [])
+        type_values = {
+            t.get("value") for t in types if isinstance(t, dict)
+        }
+        is_artifact = bool(types) and not (type_values & _NON_ARTIFACT_TYPES)
+        if not is_artifact:
+            continue
+        # If membership is known, include only declared members; otherwise any
+        # typed node (except metadata containers) is an artifact.
+        if member_uris and uri not in member_uris:
+            continue
+        entry = {"rdf:about": uri}
+        for key, value in node.items():
+            if key == f"{NS['rdf']}type":
+                continue
+            short = key.split("#")[-1].split("/")[-1]
+            entry[short] = _to_plain(value)
+        results.append(entry)
+    return results
+
+
+def _rdfxml_to_resource_dict(xml_text: str, uri: str) -> dict:
+    """Parse an OSLC RDF/XML resource into a flat dict keyed by prefixed name.
+
+    IBM ELM RM/DNG resource endpoints only serve rdf+xml (a JSON GET gets 415),
+    so get_resource() must parse RDF/XML. Mirrors the JSON-LD shape: scalar
+    literal -> str; rdf:resource -> {"rdf:resource": uri}; parseType="Literal"
+    -> inner XHTML text. Only the rdf:Description matching the given uri is read.
+    """
+    result: dict = {"rdf:about": uri}
+    try:
+        root = ET.fromstring(xml_text)
+    except ET.ParseError:
+        logger.warning("could not parse RDF/XML for %s", uri)
+        return result
+
+    rdf_ns = NS["rdf"]
+    descriptions = root.findall(f"{{{rdf_ns}}}Description")
+    target = None
+    for d in descriptions:
+        if d.get(f"{{{rdf_ns}}}about") == uri:
+            target = d
+            break
+    if target is None and descriptions:
+        target = descriptions[0]
+    if target is None:
+        return result
+
+    def qname(tag: str) -> str:
+        if tag.startswith("{"):
+            ns, local = tag[1:].split("}", 1)
+            # Prefer stable well-known prefixes for namespaces that have
+            # several aliases (acp/process/rm) in the server response.
+            preferred = {
+                "http://jazz.net/ns/acp#": "acp",
+                "http://jazz.net/ns/process#": "process",
+                "http://open-services.net/ns/config#": "oslc_config",
+                "http://jazz.net/ns/rm/navigation#": "nav",
+            }
+            if ns in preferred:
+                return f"{preferred[ns]}:{local}"
+            for prefix, namespace in NS.items():
+                if namespace == ns and prefix != "rdf":
+                    return f"{prefix}:{local}"
+            return local
+        return tag
+
+    for child in list(target):
+        if child.tag == f"{{{rdf_ns}}}type":
+            continue
+        key = qname(child.tag)
+        resource_attr = child.get(f"{{{rdf_ns}}}resource")
+        if resource_attr is not None:
+            result[key] = {"rdf:resource": resource_attr}
+            continue
+        inner = "".join(child.itertext()).strip()
+        result[key] = inner
+    return result
 
 
 async def get_resource(uri: str) -> dict:
-    """Fetch a single OSLC resource by URI."""
+    """Fetch a single OSLC resource by URI.
+
+    CC/QM endpoints answer JSON; IBM ELM RM (DOORS Next) resource endpoints
+    answer ONLY rdf+xml and reject Accept: application/json with HTTP 415
+    (CRRRS6402E). Negotiate: try JSON first, and on 415 fall back to rdf+xml
+    and parse it. Keeps CCM behavior unchanged while fixing RM reads.
+    """
     client = await get_client()
-    return await _get_json(client, uri)
+    resp = await client.get(
+        uri, headers={"Accept": "application/json", "OSLC-Core-Version": "2.0"}
+    )
+    if resp.status_code == 415:
+        xml_resp = await client.get(
+            uri,
+            headers={
+                "Accept": "application/rdf+xml, application/xml",
+                "OSLC-Core-Version": "2.0",
+            },
+        )
+        xml_resp.raise_for_status()
+        return _rdfxml_to_resource_dict(xml_resp.text, uri)
+    resp.raise_for_status()
+    return resp.json()
 
 
 async def _find_default_category(project_url: str) -> str | None:
@@ -975,3 +1143,60 @@ async def list_folders(project: str) -> list[dict]:
                 queued.add(child_uri)
                 queue.append((child_uri, depth + 1, uri))
     return results
+
+
+def build_folder_tree(folders: list[dict]) -> list[dict]:
+    """Turn the flat list returned by list_folders into a nested tree.
+
+    Each node is {"title", "uri", "children": [...]}. A node is nested under
+    another when its "parent" URI is present in the input; nodes whose parent
+    is missing (e.g. the filtered synthetic root) become roots. Malformed or
+    cyclic parent links never drop a node and never create a cycle — the
+    affected node is attached as a root instead.
+    """
+    nodes: dict[str, dict] = {}
+    parent_of: dict[str, str | None] = {}
+    for f in folders:
+        uri = f.get("uri")
+        if not uri:
+            continue
+        nodes[uri] = {"title": f.get("title"), "uri": uri, "children": []}
+        parent_of[uri] = f.get("parent")
+
+    def is_descendant(candidate: str, ancestor: str) -> bool:
+        """True when following candidate's parents reaches ancestor."""
+        cur = parent_of.get(candidate)
+        seen: set[str] = set()
+        while cur and cur in nodes:
+            if cur == ancestor:
+                return True
+            if cur in seen:
+                return False
+            seen.add(cur)
+            cur = parent_of.get(cur)
+        return False
+
+    roots: list[dict] = []
+    for f in folders:
+        uri = f.get("uri")
+        node = nodes.get(uri)
+        if node is None:
+            continue
+        parent_uri = parent_of.get(uri)
+        parent = nodes.get(parent_uri) if parent_uri else None
+        # Nest only when the parent is a different, known node that is not
+        # itself a descendant of this node (would form a cycle).
+        if parent is not None and parent is not node and not is_descendant(parent_uri, uri):
+            parent["children"].append(node)
+        else:
+            roots.append(node)
+    return roots
+
+
+async def list_folder_tree(project: str) -> list[dict]:
+    """Return the RM (DOORS Next) project's folder hierarchy as a nested tree.
+
+    Convenience wrapper over list_folders: one call yields the entire folder
+    structure as [{"title", "uri", "children": [...]}, ...].
+    """
+    return build_folder_tree(await list_folders(project))
